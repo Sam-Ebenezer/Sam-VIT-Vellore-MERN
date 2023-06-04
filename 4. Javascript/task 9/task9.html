@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 9</title>
+    <style>
+        body{
+            background-color: red;
+        }
+        table{
+            background-color: darkred;
+            /*border-collapse:collapse;*/
+            padding:40px 100px;
+        }
+        input[type="text"],input[type="password"],input[type="email"],input[type="number"]{
+            width:60%;
+        }
+
+        button{
+            border-radius:10px;
+            background-color: white;
+            color:black;
+            width:100%;
+            font-size: 20px;
+            height:50px;
+            font-weight:bold;
+        }
+
+        th{
+            font-size:20px;
+            font-weight: lighter;
+            color:white;
+            text-align: left;
+            padding-bottom: 10px;
+        }
+       
+        h1{
+            color:blue;
+            text-align: center;
+            
+        }
+
+        .is-invalid{
+            color:white;
+            font-size:15px;
+        }
+    </style>
+    <script>
+        function verify(){
+            var name=document.getElementById("name").value
+            var email=document.getElementById("e_mail").value
+            var password=document.getElementById("pwd").value
+       
+            var pno=document.getElementById("pno").value
+
+            var m=document.getElementById("m")
+            var f=document.getElementById("f")
+            var o=document.getElementById("o")
+            var lang = document.querySelector('#lang').value;
+            var zcode=document.getElementById("zcode").value
+            var about=document.getElementById("about").value
+
+           
+
+
+            var emailpattern = /^[a-zA-Z0-9+_.-]+@[a-zA-z]*\.[a-zA-z]*$/
+            var digitpattern=/^[0-9]*$/
+            var urlpattern=/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
+
+
+            if(name.length==0 || name==null){
+                document.getElementById("noname").innerHTML="*This field is required!"
+            }
+            else{
+                document.getElementById("noname").innerHTML=""
+            }
+
+            if (emailpattern.test(email) == false) {
+                document.getElementById("noemail").innerHTML = "*A valid email address is required!"
+            }
+
+            else{
+                document.getElementById("noemail").innerHTML = ""
+            }
+
+            if(password.length<8){
+                document.getElementById("nopwd").innerHTML = "*password must have atleast 8 characters!"
+            }
+            else{
+                document.getElementById("nopwd").innerHTML = ""
+            }
+
+            if(digitpattern.test(pno)==false){
+                document.getElementById("nopno").innerHTML = "*Phone number must contain only digits!"
+            }
+            else if(pno.length<10)
+            {
+                document.getElementById("nopno").innerHTML = "*Phone number must contain 10 digits!"
+            }
+
+            else{
+                document.getElementById("nopno").innerHTML = ""
+            }
+
+            if(m.checked || f.checked ||o.checked){
+                document.getElementById("nogender").innerHTML = ""
+            }
+            else{
+                document.getElementById("nogender").innerHTML = "*This field is required!"
+            }
+
+
+            if(lang=="none"){
+                document.getElementById("nolang").innerHTML = "*This field is required!"
+            }
+            else{
+                document.getElementById("nolang").innerHTML = ""
+            }
+
+            if(digitpattern.test(zcode)==false){
+                document.getElementById("nozcode").innerHTML = "*Zip Code must contain only digits!"
+            }
+
+            else if(zcode.length<5 || zcode.length>10)
+                {
+                    document.getElementById("nozcode").innerHTML = "*Zip code must be of length between 5 and 10 digits!"
+                }
+            else{
+                document.getElementById("nozcode").innerHTML = ""
+            }
+
+            if(about.length==0 || about==null){
+                document.getElementById("noabout").innerHTML="*This field is required!"
+            }
+            else{
+                document.getElementById("noabout").innerHTML=""
+            }
+
+
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+    <h1 align="center" style="color:white;">Task 9</h1>
+
+    <h1>Registration Form</h1>
+    <table border="0" align="center">
+        <tr>
+            <th>Name:</th>
+            <td><input id="name" type="text" />
+            <div class="is-invalid" id="noname"></div>
+            </td>
+            
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td><input id="e_mail" type="email" />
+                <div class="is-invalid" id="noemail"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>Password:</th>
+            <td><input id="pwd" type="password" />
+            <div class="is-invalid" id="nopwd"></div>
+            </td>
+        </tr>
+
+        
+        <tr>
+            <th>Phone Number:</th>
+            <td><input id="pno" type="text" />
+                <div class="is-invalid" id="nopno"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <th >Gender</th>
+            <td style="font-size:20px;color:white;">Male:<input type="radio" id="m" name="sex" required></input>
+                Female:<input type="radio" id="f" name="sex"></input>
+                Other:<input type="radio" id="o" name="sex"></input>
+                <div class="is-invalid" id="nogender"></div>
+                </td>
+        </tr>
+        <tr>
+            <th>Language:</th>
+            <td><select id="lang">
+                <option value="none" selected disabled hidden>Select Language</option>
+                <option value="eng">English</option>
+                <option value="kan">Kannada</option>
+                <option value="hin">Hindi</option>
+                <option value="tel">Telugu</option><br />
+            </select>
+            <div class="is-invalid" id="nolang"></div>
+        </td>
+        </tr>
+        <tr>
+            <th>Zipcode:</th>
+            <td><input id="zcode" type="text" />
+                <div class="is-invalid" id="nozcode"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>About:</th>
+            <td ><textarea id="about" rows="5" cols="30" placeholder="Write about yourself"></textarea>
+            <div class="is-invalid" id="noabout"></div>
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2"><button type="button" onclick="verify()">Register</button></td>
+        </tr>
+        
+
+    </table>
+    
+</body>
+</html>

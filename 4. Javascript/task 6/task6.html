@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Task 6</title>
+    <style>
+         div{
+            width:50%;
+            margin:auto;
+        }
+    </style>
+    <script>
+        function alp_order(){
+            var str=document.getElementById("str").value;
+
+            if(str.length==0){
+                result_string="Enter the String first!"
+            }
+
+            else{
+            var arr1=str.split("")
+            
+            arr1.sort()
+
+            var result=arr1.toString()
+            result=result.replaceAll(",","")
+
+
+            var result_string="The string in alphabetical order is: '"+result+"'";
+            }
+
+
+            document.getElementById("result").innerHTML=result_string;
+        }
+
+
+    </script>
+</head>
+<body>
+    <h1 align="center">Task 6</h1>
+
+    <div>
+        <form>
+            <label for="str">Enter the string: </label>
+            <input type="text" id="str" required/>
+
+            <input type="button" value="submit" onclick="alp_order()">
+            
+            <p id="result"></p>
+        </form>
+
+    </div>
+</body>
+</html>

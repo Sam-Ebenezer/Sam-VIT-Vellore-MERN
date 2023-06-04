@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 5</title>
+    
+    <style>
+        div{
+            width:50%;
+            margin:auto;
+        }
+    </style>
+
+    <script>
+        function reverse(){
+
+           var n=document.getElementById("num").value;
+
+            if(n.length==0)
+            {
+                result_string="Enter the number first!"
+            }
+            else{
+                var num=n;
+                var rev=0;
+                while(n>0){
+                    var digit= n % 10;
+
+                    rev= rev*10 + digit;
+                    n=(n-digit)/10
+                }
+
+                var result_string="The reverse of "+num+" is: "+rev;
+
+         }
+            document.getElementById("result").innerHTML=result_string;
+
+        }
+    </script>
+
+</head>
+<body>
+    <h1 align="center">Task 5</h1>
+    <div>
+
+        <form>
+            <label for="num">Enter the Number: </label>
+            <input type="number" id="num" required/>
+
+            <input type="button" value="submit" onclick="reverse()">
+            
+            <p id="result"></p>
+
+            
+
+        </form>
+
+    </div>
+</body>
+</html>

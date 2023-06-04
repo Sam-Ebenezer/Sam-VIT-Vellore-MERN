@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Task 11</title>
+    <style>
+
+        body{
+
+            background-image: linear-gradient(to top right,#C5A0C2, #F1D4AA)
+        }
+        table{
+            border-collapse:collapse;
+            padding:10px;
+        }
+        td{
+            padding:5px;
+        }
+        input[type="text"],input[type="password"],input[type="email"],input[type="number"]{
+            width:98%;
+        }
+
+        input[type="button"]{
+            border-radius:10px;
+            background-color: red;
+            color:white;
+            border:3px solid black;
+        }
+        h1{
+            color:blue;
+            text-align: center;
+            
+        }
+
+        .in-valid{
+            padding-left:5px;
+            color:red;
+        }
+    </style>
+
+    <script>
+        function length_check(text,id,l){
+            console.log(text)
+            let report=document.getElementById(id);
+            if(text.length<l){
+                report.innerHTML="POOR!"
+            }
+            else{
+                report.innerHTML=""
+            }
+            console.log(report)
+        }
+
+        function email_check(e_mail,id){
+            let emailpattern = /^[a-zA-Z0-9+_.-]+@[a-zA-z]*\.[a-zA-z]*$/
+            let report=document.getElementById(id);
+            if (emailpattern.test(e_mail) == false) {
+                report.innerHTML="POOR!"
+            }
+
+            else{
+                report.innerHTML=""
+            }
+        }
+
+        function pwd_check(pwd,id){
+            let pwdpattern=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+            let report=document.getElementById(id);
+            if (pwdpattern.test(pwd) == false) {
+                report.innerHTML="POOR!"
+            }
+
+            else{
+                report.innerHTML=""
+            }
+        }
+
+        function rpwd_check(pwd_id,rpwd,id){
+            let pwd=document.getElementById(pwd_id).value
+            let report=document.getElementById(id);
+            if(rpwd.length<8){
+                pwd_check(rpwd,id)
+            }
+            else if(pwd!=rpwd){
+                report.innerHTML="MISMATCH!"
+            }
+            else{
+                report.innerHTML=""
+            }
+        }
+
+
+        function digit_check(num,id,n){
+            //n==1 --> phone number , n==0 -->age
+            let report=document.getElementById(id);
+            let digitpattern=/^[0-9]*$/
+
+
+            if(digitpattern.test(num)==false){
+                report.innerHTML="POOR!"
+            }
+            else if(n==0 && (Number(num)<1 || Number(num)>150)){
+                report.innerHTML="POOR!"
+            }
+            else if(n==1 && num.length!=10){
+                report.innerHTML="POOR!"
+            }
+            else{
+                report.innerHTML=""
+            }
+        }
+
+        function verify(){
+
+            let fname=document.getElementById("fname").value
+            let lname=document.getElementById("lname").value
+            let email=document.getElementById("e_mail").value
+            let pwd=document.getElementById("pwd").value
+            let rpwd=document.getElementById("rpwd").value
+            let age=document.getElementById("age").value
+            let pno=document.getElementById("pno").value
+            let address=document.getElementById("address").value
+            let state=document.getElementById("state").value
+
+
+            length_check(fname,'inv_fname',3)
+            length_check(lname,'inv_lname',5)
+            email_check(email,'inv_email')
+            pwd_check(pwd,'inv_pwd')
+            rpwd_check('pwd',rpwd,'inv_rpwd')
+
+            digit_check(age,'inv_age',0)
+            digit_check(pno,'inv_pno',1)
+            length_check(address,'inv_address',20)
+            length_check(state,'inv_state',5)
+
+            let m=document.getElementById("m")
+            let f=document.getElementById("f")
+
+            let lang=document.querySelector('#country').value;
+
+            if(m.checked || f.checked){
+                document.getElementById("inv_gender").innerHTML = ""
+            }
+            else{
+                document.getElementById("inv_gender").innerHTML = "*This field is required!"
+            }
+
+
+            if(lang=="none"){
+                document.getElementById("inv_country").innerHTML = "*This field is required!"
+            }
+            else{
+                document.getElementById("inv_country").innerHTML = ""
+            }
+
+            let checkboxs=document.getElementsByName("lang");
+            let flag=false;
+            for(let i=0,l=checkboxs.length;i<l;i++)
+            {
+                if(checkboxs[i].checked)
+                {
+                    flag=true;
+                    break;
+                }
+            }
+            if(!flag){
+                document.getElementById("inv_lang").innerHTML = "*This field is required!"
+            }
+            else{
+                document.getElementById("inv_lang").innerHTML = ""
+            }
+
+            if(!document.getElementById("declare").checked){
+                document.getElementById("inv_declare").innerHTML = "*This field is required!"
+            }
+            else{
+                document.getElementById("inv_declare").innerHTML = ""
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <h1 align="center" style="color:black;">Task 8</h1>
+
+    <h1>Registration Form</h1>
+    <table border="0" align="center">
+        <tr>
+            <th>First Name</th>
+            <td><input id="fname" type="text"  oninput="length_check(this.value,'inv_fname',3)"/></td>
+            <td class="in-valid" id="inv_fname"></td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td><input id="lname" type="text" oninput="length_check(this.value,'inv_lname',5)" /></td>
+            <td class="in-valid" id="inv_lname"></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><input id="e_mail" type="email" oninput="email_check(this.value,'inv_email')" /></td>
+            <td class="in-valid" id="inv_email"></td>
+        </tr>
+        <tr>
+            <th>Password:</th>
+            <td><input id="pwd" type="password"  oninput="pwd_check(this.value,'inv_pwd')"/></td>
+            <td class="in-valid" id="inv_pwd"></td>
+        </tr>
+
+        <tr>
+            <th>Re-enter Password:</th>
+            <td><input id="rpwd" type="password"  oninput="rpwd_check('pwd',this.value,'inv_rpwd')"/></td>
+            <td class="in-valid" id="inv_rpwd"></td>
+        </tr>
+        <tr>
+            <th rowspan="2">Gender</th>
+            <td><input type="radio" id="m" name="sex" >Male</input>
+                </td>
+            <td rowspan="2" class="in-valid" id="inv_gender"></td>
+        </tr>
+        <tr>
+            <td><input type="radio" id="f" name="sex">Female</input></td>
+        </tr>
+
+        <tr>
+            <th>Age</th>
+            <td><input id="age" type="text"  oninput="digit_check(this.value,'inv_age',0)"/></td>
+            <td class="in-valid" id="inv_age"></td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td><input id="pno" type="text"  oninput="digit_check(this.value,'inv_pno',1)" /></td>
+            <td class="in-valid" id="inv_pno"></td>
+        </tr>
+
+        <tr>
+            <th>Address</th>
+            <td><textarea id="address" rows="10" cols="50" oninput="length_check(this.value,'inv_address',20)"></textarea></td>
+            <td class="in-valid" id="inv_address"></td>
+        </tr>
+        <tr>
+            <th>State</th>
+            <td><input id="state" type="text" oninput="length_check(this.value,'inv_state',5)" /></td>
+            <td class="in-valid" id="inv_state"></td>
+        </tr>
+        <tr>
+            <th>Country</th>
+            <td><select id="country" >
+                <option value="none" selected disabled hidden>Choose your country</option>
+                <option value="us">United States</option>
+                <option value="ind">India</option>
+                <option value="uk">United Kingdom</option>
+                <option value="uae">United Arab Emirates</option><br />
+                
+            </select>
+            <div class="in-valid" id="inv_country"></div>
+        </td>
+            
+        </tr>
+        <tr>
+            <th>Languages Known</th>
+            <td>
+                <input type="checkbox" id="eng" name="lang" >English</input>
+                <input type="checkbox" id="kan" name="lang" >Kannada</input>
+                <input type="checkbox" id="hin" name="lang" >Hindi</input>
+                <input type="checkbox" id="tel" name="lang" >Telugu</input>
+                <div class="in-valid" id="inv_lang"></div>
+            </td>
+               
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="checkbox" id="declare">Hereby I declare all the given details are true</input><br />
+                <div class="in-valid" id="inv_declare"></div>
+
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;" colspan="2">Log in to <a href="">Ethnus</a> website</td>
+        </tr>
+
+    </table>
+    <br />
+    <div style="display: grid;  ">
+    <input type="button" value="REGISTER" style="margin:auto;padding:5px 20px;" onclick="verify()"/>
+    </div>      
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Task 3</title>
+    
+    <style>
+        table{
+            border-collapse:collapse;
+            padding:10px;
+        }
+        
+        td{
+            padding:10px;
+        }
+
+        
+        h1{
+            color:blue;
+            text-align: center;
+            
+        }
+
+        input{
+            float:left;
+        }
+
+        textarea{
+            float:left;
+        }
+        .is-invalid{
+            margin-left:15px;
+            float:left;
+            color:red;
+        }
+    </style>
+
+    <script>
+        function verify(){
+            var name=document.getElementById("name").value
+            var email=document.getElementById("e_mail").value
+            var website=document.getElementById("web").value
+            var message=document.getElementById("msg").value
+            var emailpattern = /^[a-zA-Z0-9+_.-]+@[a-zA-z]*\.[a-zA-z]*$/
+            var urlpattern=/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
+
+            if(name.length==0 || name==null){
+                document.getElementById("empty_name").innerHTML="This field is required"
+                document.getElementById("name").style.border="3px solid red"
+            }
+            else{
+                document.getElementById("empty_name").innerHTML=""
+                document.getElementById("name").style.border ="1px solid black"
+            }
+
+            if (emailpattern.test(email) == false) {
+                document.getElementById("invalid_email").innerHTML = "A valid email address is required"
+                document.getElementById("e_mail").style.border="3px solid red"
+            }
+
+            else{
+                document.getElementById("invalid_email").innerHTML = ""
+                document.getElementById("e_mail").style.border="1px solid black"
+            }
+
+            if (urlpattern.test(website) == false) {
+                document.getElementById("invalid_web").innerHTML = "A valid url address is required"
+                document.getElementById("web").style.border="3px solid red"
+            }
+
+            else{
+                document.getElementById("invalid_web").innerHTML = ""
+                document.getElementById("web").style.border="1px solid black"
+            }
+
+
+
+            if(message.length==0 || message==null){
+                document.getElementById("empty_msg").innerHTML="This field is required"
+                document.getElementById("msg").style.border="3px solid red"
+            }
+            else{
+                document.getElementById("empty_msg").innerHTML=""
+                document.getElementById("msg").style.border="1px solid black"
+            }
+
+
+
+
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <h1 align="center">Task 3</h1>
+    <br />
+    <h1>Registration Form</h1>
+    
+    <table border="0" align="center">
+    
+        <tr>
+            <td>Name:</td>
+            <td><input id="name" type="text"  />
+                <div id="empty_name" class="is-invalid">
+            </td>
+            
+
+            </div>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input id="e_mail" type="text"  />
+                <div id="invalid_email" class="is-invalid"></div>
+            </td>
+            
+        </tr>
+        <tr>
+            <td>Website:</td>
+            <td><input id="web" type="text"  />
+                <div id="invalid_web" class="is-invalid"></div>
+            </td>
+            
+        </tr>
+
+
+        <tr>
+            <td>Message:</td>
+            <td><textarea id="msg" rows="10" cols="50"></textarea>
+                <div id="empty_msg" class="is-invalid"></div>
+            </td>
+            
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="button" value="submit" style="margin:auto;" onclick="verify()"/></td>
+        </tr>
+    </table>
+</body>
+</html>

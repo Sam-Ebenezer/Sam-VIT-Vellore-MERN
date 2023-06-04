@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 10</title>
+
+   
+</head>
+<body>
+    <h1 align="center">Task 10</h1>
+    <div style="width:50%;margin:auto;">
+        <h1 align="center">Array methods</h1>
+        <p align="center" style="color:red;">Check console for result!</p>
+    <h2>Concat</h2>
+    <p>Concatenate two strings</p>
+    <script>
+        let arr1=[10,20,30]
+        let arr2=[30,40,50]
+        let arr3=arr1.concat(arr2)
+        console.log("concate arrays")
+        console.log("Array 1: "+arr1)
+        console.log("Array 2: "+arr2)
+        console.log("Result: "+arr3)
+        console.log("\n")
+    </script>
+
+    <h2>CopyWithin</h2>
+    <p>used to copy the elements within the array to other elements in the array without changing array length</p>
+    <script>
+        arr1=[10,20,30,40,50,60]
+        console.log("copywithin method")
+        console.log("Array 1: "+arr1)
+        console.log("Applying arr1.copyWithin(3,0,3):")
+        console.log("Result: "+arr1.copyWithin(3,0,3))
+        console.log("\n")
+       
+    </script>
+
+    <h2>Map</h2>
+    <p>Used to map each element in array to another element</p>
+    <script>
+        arr1=[10,20,30,40,50,60]
+        console.log("map method")
+        console.log("Array 1: "+arr1)
+        console.log("Mapping each element in the array to its square")
+        let map1 = arr1.map(x => x * 2);
+        console.log("Result: "+map1)
+        console.log("\n")
+    </script>
+
+    <h2>Every</h2>
+    <p>Used to check if every element in array passes a condition</p>
+    <script>
+        arr1=[10,20,30,40,50,60]
+        let isBelowThreshold = (currentValue) => currentValue < 40;
+        console.log("every method")
+        console.log("Array 1: "+arr1)
+        console.log("checking if every element in the array is greater than 40")
+        console.log("Result: "+arr1.every(isBelowThreshold))
+        console.log("\n")
+    </script>
+
+    <h2>Some</h2>
+    <p>Used to check if atleast one element in array passes a condition</p>
+    <script>
+        arr1=[10,20,30,40,50,60]
+        isBelowThreshold = (currentValue) => currentValue < 40;
+        console.log("some method")
+        console.log("Array 1: "+arr1)
+        console.log("checking if atleast one element in the array is greater than 40")
+        console.log("Result: "+arr1.some(isBelowThreshold))
+        console.log("\n")
+    </script>
+    
+    <h2>Filter</h2>
+    <p>creates a new array from the original array where the elements in the new array all passes a condition </p>
+    <script>
+        arr1=[10,20,30,40,50,60]
+        isBelowThreshold = (currentValue) => currentValue > 40;
+        console.log("filter method")
+        console.log("Array 1: "+arr1)
+        console.log("creating a new array where each element is greater than 40 from the original array")
+        arr2=arr1.filter(isBelowThreshold)
+        console.log("Result: "+arr2)
+        console.log("\n")
+    </script>
+
+    <h2>Find</h2>
+    <p>find the first element that satisfies the condition in the array</p>
+    <script>
+        arr1=[10,20,30,40,50,60]
+        isBelowThreshold = (currentValue) => currentValue < 40;
+        console.log("Find method")
+        console.log("Array 1: "+arr1)
+        console.log("find the first element that is less than 40 in the array")
+        console.log("Result: "+arr1.find(isBelowThreshold))
+        console.log("\n")
+    </script>
+
+    <h2>FindIndex</h2>
+    <p>find the index of the first element that satisfies the condition in the array</p>
+    <script>
+        arr1=[10,20,30,40,50,60]
+        isBelowThreshold = (currentValue) => currentValue < 40;
+        console.log("Find method")
+        console.log("Array 1: "+arr1)
+        console.log("find the index of the  first element that is less than 40 in the array")
+        console.log("Result: "+arr1.findIndex(isBelowThreshold))
+        console.log("\n")
+    </script>
+
+    <h2>IndexOf</h2>
+    <p>returns the first index at which a given element can be found in the array, or -1 if it is not present. </p>
+    <script>
+        arr1=[10,20,30,40,50,60]
+        console.log("IndexOf method")
+        console.log("Array 1: "+arr1)
+        console.log("find the index of the first occurence of 40")
+        console.log("Result: "+arr1.indexOf(40))
+        console.log("\n")
+    </script>
+
+    <h2>lastIndexOf</h2>
+    <p>returns the last index at which a given element can be found in the array, or -1 if it is not present. </p>
+    <script>
+        arr1=[10,20,30,40,50,60,40,50]
+        console.log("lastIndexOf method")
+        console.log("Array 1: "+arr1)
+        console.log("find the index of the last occurence of 40")
+        console.log("Result: "+arr1.lastIndexOf(40))
+        console.log("\n")
+    </script>
+
+    <h2>Push</h2>
+    <p>adds an element to the end of the array. </p>
+    <script>
+        arr1=[10,20,30,40,50,60,40,50]
+        console.log("Push method")
+        console.log("Array 1: "+arr1)
+        console.log("adding 60 to the end of the array using arr1.push(60)")
+        arr1.push(60)
+        console.log("Result: "+arr1)
+        console.log("\n")
+    </script>
+
+    <h2>Pop</h2>
+    <p>removes the last element of the array. </p>
+    <script>
+        arr1=[10,20,30,40,50,60,40,50]
+        console.log("Pop method")
+        console.log("Array 1: "+arr1)
+        console.log("removing the last element of the array using arr1.pop()")
+        arr1.pop()
+        console.log("Result: "+arr1)
+        console.log("\n")
+    </script>
+
+    <h2>Shift</h2>
+    <p>removes the first element of the array. </p>
+    <script>
+        arr1=[10,20,30,40,50,60,40,50]
+        console.log("Shift method")
+        console.log("Array 1: "+arr1)
+        console.log("removing the first element of the array using arr1.pop()")
+        arr1.shift()
+        console.log("Result: "+arr1)
+        console.log("\n")
+    </script>
+
+
+    </div>
+</body>
+</html>
